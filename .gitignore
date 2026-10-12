@@ -1,0 +1,31 @@
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+*.local.properties
+config.local.ps1
+
+# Raw datasets (only curated samples are versioned)
+/data/
+*.parquet
+*.orc
+
+# Build and runtime output
+**/target/
+**/build/
+**/output/
+**/runtime/
+**/spark-warehouse/
+**/metastore_db/
+**/derby.log
+*.log
+
+# IDE and OS files
+.idea/
+*.iml
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Local dependency caches
+.m2-cache/

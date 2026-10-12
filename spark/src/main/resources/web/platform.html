@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>通用电商大数据分析平台</title>
+  <link rel="stylesheet" href="platform.css">
+</head>
+<body>
+<header class="app-header">
+  <div class="brand">
+    <div class="brand-mark">S</div>
+    <div><strong>通用电商大数据分析平台</strong><span>Spark · Hive · MySQL</span></div>
+  </div>
+  <div class="header-tools">
+    <label for="dataset-select">当前数据集</label>
+    <select id="dataset-select" aria-label="当前数据集"></select>
+    <small>V3.2 · Java 17 · Spark</small>
+  </div>
+</header>
+
+<nav id="nav" class="top-nav" aria-label="主导航">
+  <button type="button" data-page="overview" class="active"><span>◫</span>平台总览</button>
+  <button type="button" data-page="datasets"><span>▤</span>数据集管理</button>
+  <button type="button" data-page="jobs"><span>▶</span>分析任务</button>
+  <button type="button" data-page="analytics"><span>▥</span>分析中心</button>
+  <button type="button" data-page="status"><span>●</span>系统状态</button>
+</nav>
+
+<main class="app-main">
+  <section id="page-overview" class="page active">
+    <div class="page-heading">
+      <div><span class="eyebrow">PLATFORM OVERVIEW</span><h1>平台总览</h1><p id="overview-subtitle">正在加载数据集概况…</p></div>
+      <button type="button" class="btn primary" data-go="analytics">进入分析中心</button>
+    </div>
+    <div id="overview-cards" class="metric-grid five"></div>
+    <div class="layout-2 overview-middle">
+      <article class="panel"><div class="panel-title"><div><span>任务动态</span><h2>最近分析任务</h2></div><button type="button" class="text-btn" data-go="jobs">查看全部</button></div><div id="overview-jobs"></div></article>
+      <article class="panel"><div class="panel-title"><div><span>DATA QUALITY</span><h2>数据质量与接入状态</h2></div></div><div id="quality-content"></div></article>
+    </div>
+    <div class="layout-2">
+      <article class="panel chart-panel"><div class="panel-title"><div><span>BEHAVIOR MIX</span><h2>行为结构预览</h2></div></div><div id="overview-behavior-chart" class="chart"></div></article>
+      <article class="panel chart-panel"><div class="panel-title"><div><span>DAILY TREND</span><h2>每日趋势预览</h2></div></div><div id="overview-trend-chart" class="chart"></div></article>
+    </div>
+  </section>
+
+  <section id="page-datasets" class="page">
+    <div class="page-heading">
+      <div><span class="eyebrow">DATASET MANAGEMENT</span><h1>数据集管理</h1><p>统一完成数据登记、字段映射、能力检测与分析记录查看。</p></div>
+      <button type="button" id="toggle-register" class="btn primary">＋ 登记数据集</button>
+    </div>
+    <div id="register-drawer" class="panel collapsible hidden">
+      <div class="panel-title"><div><span>NEW DATASET</span><h2>登记或上传 CSV</h2></div></div>
+      <div class="layout-2 forms-layout">
+        <form id="register-form" class="form-grid">
+          <label>数据集名称<input name="name" placeholder="例如：订单交易数据" required></label>
+          <label>数据类型<select name="datasetType"><option value="GENERIC_CSV">通用 CSV</option><option value="TAOBAO_BEHAVIOR">淘宝行为数据</option></select></label>
+          <label class="wide">本地 CSV 绝对路径<input name="filePath" placeholder="C:\data\dataset.csv" required></label>
+          <label>包含表头<select name="hasHeader"><option value="true">是</option><option value="false">否</option></select></label>
+          <label>分隔符<input name="delimiter" value="," maxlength="1"></label>
+          <label class="wide">用途说明<input name="description" placeholder="数据来源与分析用途"></label>
+          <button type="submit" class="btn primary">登记数据集</button>
+        </form>
+        <form id="upload-form" class="upload-box">
+          <div class="upload-icon">CSV</div><strong>上传较小的 CSV 文件</strong><p>大型正式数据请使用绝对路径原地登记，避免重复复制。</p>
+          <input name="file" type="file" accept=".csv" required>
+          <button type="submit" class="btn secondary">上传文件</button><span id="upload-result"></span>
+        </form>
+      </div>
+    </div>
+    <article class="panel">
+      <div class="panel-title"><div><span>DATASETS</span><h2>已接入数据集</h2></div><span id="dataset-count" class="soft-badge"></span></div>
+      <div id="dataset-table" class="table-wrap"></div>
+    </article>
+    <article id="dataset-workspace" class="panel workspace">
+      <div id="dataset-hero" class="workspace-hero"></div>
+      <div id="dataset-tabs" class="sub-tabs">
+        <button type="button" data-tab="basic" class="active">基本信息</button>
+        <button type="button" data-tab="preview">数据预览</button>
+        <button type="button" data-tab="mapping">字段映射</button>
+        <button type="button" data-tab="capabilities">能力检测</button>
+        <button type="button" data-tab="history">分析记录</button>
+      </div>
+      <div id="dataset-tab-basic" class="tab-pane active"></div>
+      <div id="dataset-tab-preview" class="tab-pane"></div>
+      <div id="dataset-tab-mapping" class="tab-pane"><form id="mapping-form"><div id="mapping-table"></div><div class="form-actions"><button type="submit" class="btn primary">保存并确认映射</button></div></form></div>
+      <div id="dataset-tab-capabilities" class="tab-pane"><div id="capabilities" class="capability-grid"></div></div>
+      <div id="dataset-tab-history" class="tab-pane"><div id="dataset-history"></div></div>
+    </article>
+  </section>
+
+  <section id="page-jobs" class="page">
+    <div class="page-heading">
+      <div><span class="eyebrow">ANALYSIS JOBS</span><h1>分析任务</h1><p>跟踪 Spark 任务状态、日志和不可覆盖的结果版本。</p></div>
+      <button type="button" id="toggle-job-form" class="btn primary">＋ 新建分析任务</button>
+    </div>
+    <form id="job-form" class="panel hidden">
+      <div class="panel-title"><div><span>NEW JOB</span><h2>选择分析模块</h2></div><span class="hint">仅显示当前数据集具备的能力</span></div>
+      <div id="module-list" class="module-checks"></div>
+      <button type="submit" class="btn primary">启动 Spark 分析</button>
+    </form>
+    <article class="panel">
+      <div class="panel-title"><div><span>JOB QUEUE</span><h2>任务列表</h2></div><div id="job-filters" class="filter-group"><button type="button" data-filter="ALL" class="active">全部</button><button type="button" data-filter="SUCCESS">成功</button><button type="button" data-filter="RUNNING">运行中</button><button type="button" data-filter="FAILED">失败</button></div></div>
+      <div id="job-table" class="table-wrap"></div>
+    </article>
+    <article id="job-detail-panel" class="panel workspace">
+      <div class="panel-title"><div><span>JOB DETAIL</span><h2>任务详情</h2></div></div>
+      <div id="job-detail"></div>
+      <div class="layout-2 job-lower"><div><h3>运行日志</h3><pre id="job-log" class="log"></pre></div><div><h3>结果版本</h3><div id="job-results"></div></div></div>
+    </article>
+  </section>
+
+  <section id="page-analytics" class="page">
+    <div id="analytics-header" class="analytics-hero"></div>
+    <div id="analytics-tabs" class="analysis-tabs"></div>
+    <div id="analytics-kpis" class="metric-grid"></div>
+    <div id="analytics-content" class="analysis-grid"></div>
+  </section>
+
+  <section id="page-status" class="page">
+    <div class="page-heading"><div><span class="eyebrow">SYSTEM STATUS</span><h1>系统状态</h1><p>所有状态均来自当前服务和运行目录，不使用写死的绿色指示。</p></div><button type="button" id="refresh-status" class="btn secondary">刷新状态</button></div>
+    <div id="system-status-cards" class="status-grid"></div>
+    <article class="panel"><div class="panel-title"><div><span>RUNTIME</span><h2>运行环境</h2></div></div><div id="system-runtime"></div></article>
+    <article class="panel"><div class="panel-title"><div><span>SAFETY</span><h2>部署边界</h2></div></div><div class="notice info">当前服务默认绑定 127.0.0.1，适用于本机或受信任内网演示。未配置认证、TLS 与公网访问控制，请勿直接暴露到互联网。</div></article>
+  </section>
+</main>
+
+<footer>通用电商大数据分析平台 · V3.2 展示层优化</footer>
+<div id="toast" role="status" aria-live="polite"></div>
+<script src="echarts.min.js"></script>
+<script src="platform.js"></script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>电商用户行为分析与可视化系统</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+    <h1>Spark 电商用户分析与可视化系统</h1>
+    <p class="subtitle">阿里巴巴用户行为数据集 · Spark 分析结果可视化</p>
+</header>
+
+<nav id="tabs">
+    <button class="tab active" data-page="page-overview">总览</button>
+    <button class="tab" data-page="page-user">用户行为</button>
+    <button class="tab" data-page="page-value">用户价值</button>
+    <button class="tab" data-page="page-segment">用户分群</button>
+    <button class="tab" data-page="page-cluster">用户聚类</button>
+    <button class="tab" data-page="page-product">商品分析</button>
+    <button class="tab" data-page="page-path">行为路径</button>
+    <button class="tab" data-page="page-time">时间趋势</button>
+</nav>
+
+<main>
+    <section id="page-overview" class="page active">
+        <div id="cards" class="cards"></div>
+        <div class="grid-2">
+            <div class="panel"><h2>用户行为占比</h2><div id="chart-behavior-pie" class="chart"></div></div>
+            <div class="panel"><h2>各行为事件数量</h2><div id="chart-behavior-bar" class="chart"></div></div>
+        </div>
+        <div class="panel"><h2>事件转化率（事件数比例）</h2><div id="chart-conversion" class="chart"></div></div>
+    </section>
+
+    <section id="page-user" class="page">
+        <div class="grid-2">
+            <div class="panel"><h2>用户活跃度分层</h2><div id="chart-active" class="chart"></div></div>
+            <div class="panel"><h2>用户购买频率分层</h2><div id="chart-buy-level" class="chart"></div></div>
+        </div>
+        <div class="panel"><h2>用户购买次数分布（0~30 次）</h2><div id="chart-purchase-freq" class="chart"></div></div>
+    </section>
+
+    <section id="page-value" class="page">
+        <div class="grid-2">
+            <div class="panel"><h2>用户价值等级分布</h2><div id="chart-value-level" class="chart"></div></div>
+            <div class="panel"><h2>价值总分分布</h2><div id="chart-value-score" class="chart"></div></div>
+        </div>
+        <div class="grid-3">
+            <div class="panel"><h2>A_score（购买范围）</h2><div id="chart-a" class="chart"></div></div>
+            <div class="panel"><h2>F_score（购买频率）</h2><div id="chart-f" class="chart"></div></div>
+            <div class="panel"><h2>R_score（最近购买）</h2><div id="chart-r" class="chart"></div></div>
+        </div>
+    </section>
+
+    <section id="page-segment" class="page">
+        <div class="grid-2">
+            <div class="panel"><h2>用户群体规模</h2><div id="chart-segment-size" class="chart"></div></div>
+            <div class="panel"><h2>各群体人均购买次数</h2><div id="chart-segment-buy" class="chart"></div></div>
+        </div>
+        <div class="panel"><h2>各群体人均行为差异明细</h2><div id="table-segment"></div></div>
+    </section>
+
+    <section id="page-cluster" class="page">
+        <div class="panel"><h2>KMeans 聚类 K 值选择（WSSSE / 轮廓系数）</h2><div id="chart-cluster-eval" class="chart"></div></div>
+        <div class="grid-2">
+            <div class="panel"><h2>各聚类用户规模</h2><div id="chart-cluster-size" class="chart"></div></div>
+            <div class="panel"><h2>各聚类画像均值明细</h2><div id="table-cluster"></div></div>
+        </div>
+        <div class="panel"><h2>聚类 × 规则分群 交叉表</h2><div id="table-cluster-cross"></div></div>
+    </section>
+
+    <section id="page-product" class="page">
+        <div class="grid-2">
+            <div class="panel"><h2>热门商品 TOP10（按浏览）</h2><div id="chart-item-pv" class="chart"></div></div>
+            <div class="panel"><h2>热门商品 TOP10（按购买）</h2><div id="chart-item-buy" class="chart"></div></div>
+        </div>
+        <div class="grid-2">
+            <div class="panel"><h2>热门类别 TOP10（按浏览）</h2><div id="chart-cat-pv" class="chart"></div></div>
+            <div class="panel"><h2>热门类别 TOP10（按购买，含转化率）</h2><div id="chart-cat-buy" class="chart"></div></div>
+        </div>
+    </section>
+
+    <section id="page-path" class="page">
+        <div class="panel">
+            <h2>行为链路漏斗（(用户,商品)对口径）</h2>
+            <p class="hint">说明：数据不含会话 ID，按"同一用户对同一商品在购买前发生过对应行为"进行近似统计。</p>
+            <div id="chart-funnel" class="chart"></div>
+        </div>
+        <div class="panel"><h2>漏斗明细</h2><div id="table-funnel"></div></div>
+    </section>
+
+    <section id="page-time" class="page">
+        <div class="panel"><h2>每日行为趋势（2017-11-25 ~ 2017-12-03）</h2><div id="chart-date" class="chart"></div></div>
+        <div class="panel"><h2>24 小时行为强度分布</h2><div id="chart-hour" class="chart"></div></div>
+        <div class="panel"><h2>购买时间热力（日期 × 小时）</h2><div id="chart-heat" class="chart"></div></div>
+    </section>
+</main>
+
+<footer>Spark + Java 分析结果 · ECharts 可视化</footer>
+
+<script src="echarts.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

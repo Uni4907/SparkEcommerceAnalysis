@@ -1,0 +1,115 @@
+{
+  "viewport": "1366x768",
+  "captures": [
+    {
+      "filename": "01_platform_overview.png",
+      "activePage": "page-overview",
+      "activeDataset": "2",
+      "activeDatasetTab": "basic",
+      "activeAnalysisTab": null,
+      "horizontalOverflow": false,
+      "bodyTextLength": 704
+    },
+    {
+      "filename": "02_datasets.png",
+      "activePage": "page-datasets",
+      "activeDataset": "2",
+      "activeDatasetTab": "basic",
+      "activeAnalysisTab": null,
+      "horizontalOverflow": false,
+      "bodyTextLength": 733
+    },
+    {
+      "filename": "03_dataset_detail.png",
+      "activePage": "page-datasets",
+      "activeDataset": "2",
+      "activeDatasetTab": "basic",
+      "activeAnalysisTab": null,
+      "horizontalOverflow": false,
+      "bodyTextLength": 733
+    },
+    {
+      "filename": "04_field_mapping.png",
+      "activePage": "page-datasets",
+      "activeDataset": "2",
+      "activeDatasetTab": "mapping",
+      "activeAnalysisTab": null,
+      "horizontalOverflow": false,
+      "bodyTextLength": 1622
+    },
+    {
+      "filename": "05_capabilities.png",
+      "activePage": "page-datasets",
+      "activeDataset": "2",
+      "activeDatasetTab": "capabilities",
+      "activeAnalysisTab": null,
+      "horizontalOverflow": false,
+      "bodyTextLength": 768
+    },
+    {
+      "filename": "06_jobs.png",
+      "activePage": "page-jobs",
+      "activeDataset": "2",
+      "activeDatasetTab": "capabilities",
+      "activeAnalysisTab": null,
+      "horizontalOverflow": false,
+      "bodyTextLength": 2703
+    },
+    {
+      "filename": "07_job_detail.png",
+      "activePage": "page-jobs",
+      "activeDataset": "2",
+      "activeDatasetTab": "capabilities",
+      "activeAnalysisTab": null,
+      "horizontalOverflow": false,
+      "bodyTextLength": 2703
+    },
+    {
+      "filename": "08_analytics_overview.png",
+      "activePage": "page-analytics",
+      "activeDataset": "2",
+      "activeDatasetTab": "capabilities",
+      "activeAnalysisTab": "overview",
+      "horizontalOverflow": false,
+      "bodyTextLength": 458
+    },
+    {
+      "filename": "09_analytics_behavior.png",
+      "activePage": "page-analytics",
+      "activeDataset": "2",
+      "activeDatasetTab": "capabilities",
+      "activeAnalysisTab": "behavior",
+      "horizontalOverflow": false,
+      "bodyTextLength": 392
+    },
+    {
+      "filename": "10_analytics_trend.png",
+      "activePage": "page-analytics",
+      "activeDataset": "2",
+      "activeDatasetTab": "capabilities",
+      "activeAnalysisTab": "daily_trend",
+      "horizontalOverflow": false,
+      "bodyTextLength": 5814
+    },
+    {
+      "filename": "11_order_dataset_analytics.png",
+      "activePage": "page-analytics",
+      "activeDataset": "1",
+      "activeDatasetTab": "capabilities",
+      "activeAnalysisTab": "sales",
+      "horizontalOverflow": false,
+      "bodyTextLength": 378
+    },
+    {
+      "filename": "12_system_status.png",
+      "activePage": "page-status",
+      "activeDataset": "1",
+      "activeDatasetTab": "capabilities",
+      "activeAnalysisTab": "sales",
+      "horizontalOverflow": false,
+      "bodyTextLength": 614
+    }
+  ],
+  "uncaughtExceptions": [],
+  "consoleErrors": []
+}

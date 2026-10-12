@@ -1,0 +1,172 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+    background: #f2f4f8;
+    color: #333;
+}
+
+header {
+    background: linear-gradient(135deg, #1f3a93, #2f5fd0);
+    color: #fff;
+    padding: 22px 28px;
+}
+
+header h1 {
+    font-size: 22px;
+    font-weight: 600;
+}
+
+header .subtitle {
+    margin-top: 6px;
+    font-size: 13px;
+    opacity: 0.85;
+}
+
+nav {
+    background: #fff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 20px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+nav .tab {
+    border: none;
+    background: none;
+    padding: 14px 18px;
+    font-size: 14px;
+    cursor: pointer;
+    color: #555;
+    border-bottom: 3px solid transparent;
+}
+
+nav .tab:hover {
+    color: #1f3a93;
+}
+
+nav .tab.active {
+    color: #1f3a93;
+    border-bottom-color: #1f3a93;
+    font-weight: 600;
+}
+
+main {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+.panel {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+    margin-bottom: 18px;
+    padding: 16px;
+}
+
+.panel h2 {
+    font-size: 15px;
+    color: #1f3a93;
+    margin-bottom: 10px;
+}
+
+.hint {
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 8px;
+}
+
+.chart {
+    height: 360px;
+    width: 100%;
+}
+
+.grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 14px;
+    margin-bottom: 18px;
+}
+
+.card {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+    padding: 18px 14px;
+    text-align: center;
+}
+
+.card .value {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1f3a93;
+    word-break: break-all;
+}
+
+.card .label {
+    font-size: 12px;
+    color: #888;
+    margin-top: 8px;
+}
+
+table.detail {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+table.detail th, table.detail td {
+    border: 1px solid #e5e7eb;
+    padding: 8px 10px;
+    text-align: right;
+}
+
+table.detail th:first-child, table.detail td:first-child {
+    text-align: left;
+}
+
+table.detail th {
+    background: #f7f8fa;
+    color: #555;
+}
+
+footer {
+    text-align: center;
+    color: #aaa;
+    font-size: 12px;
+    padding: 18px;
+}
+
+@media (max-width: 900px) {
+    .grid-2, .grid-3, .cards {
+        grid-template-columns: 1fr;
+    }
+}
